@@ -2,18 +2,18 @@ import time
 from player import HumanPlayer, RandomComputerPlayer
 
 class TicTacToe:
-    def _init_(self):
-        self.board =['' for _ in range(9)] #we will use a single list to rep 3 by 3 board
+    def __init__(self):
+        self.board = [' ' for _ in range(9)] #we will use a single list to rep 3 by 3 board
         self.current_winner = None # keep track of winner
 
     def print_board(self):
-        for row in [self.board[i*3(i+1)*3]for i in range(3)]:
+        for row in [self.board[i*3:(i+1)*3] for i in range(3)]:
 
             print('|'+'|'.join(row) + ' |')
     @staticmethod
     def print_board_nums():
         #o|1|2 etc (tells us what number corresponds to what box)
-        number_board = [[str(i)for i in range(j*3, (j+1)*3)]for j in range(3)]
+        number_board = [[str(i)for i in range(j*3, (j+1)*3)] for j in range(3)]
         for row in number_board:
             print('| ' + ' | '.join(row) + ' |')
 
@@ -23,9 +23,10 @@ class TicTacToe:
   
 
     def empty_squares(self):
-        return ' ' in self.board.count
+        return ' ' in self.board
+        
     def num_empty_square(self):
-        return len(self.avalibale_moves)
+        return self.board.count(' ')
 
     def make_move(self, square, letter ):
         #if the move is valid, then make the move(assign square to letter)
