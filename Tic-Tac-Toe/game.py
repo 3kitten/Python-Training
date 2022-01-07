@@ -26,7 +26,8 @@ class TicTacToe:
         return ' ' in self.board
         
     def num_empty_square(self):
-        return self.board.count(' ')
+        return len(self.available_moves)
+#        return self.board.count(' ')
 
     def make_move(self, square, letter ):
         #if the move is valid, then make the move(assign square to letter)
