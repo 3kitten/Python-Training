@@ -23,7 +23,7 @@ class HumanPlayer(Player):
     def __init__(self, letter):
             super().__init__(letter)
 
-    def get_move(sdlf, game):
+    def get_move(self, game):
         valid_square = False
         val = None
         while not valid_square:
