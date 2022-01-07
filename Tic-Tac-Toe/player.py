@@ -2,7 +2,7 @@ import math
 import random
 
 class Player:
-    def _init_(self, letter):
+    def __init__(self, letter):
         #letter is x or o
         self.letter = letter
     #we want all players to get their next move given a game
@@ -11,8 +11,8 @@ class Player:
 
 
 class RandomComputerPlayer(Player):
-    def _init_(self, letter):
-     super   ()._init_(letter)
+    def __init__(self, letter):
+            super().__init__(letter)
 
     def get_move(self, game):
        #get a random valid spot for our next move
@@ -21,7 +21,7 @@ class RandomComputerPlayer(Player):
 
 class HumanPlayer(Player):
     def __init__(self, letter):
-            super()._init_(letter)
+            super().__init__(letter)
 
     def get_move(sdlf, game):
         valid_square = False
