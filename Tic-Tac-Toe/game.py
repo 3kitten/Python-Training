@@ -46,25 +46,25 @@ class TicTacToe:
         if all([spot == letter for spot in row]):
             return True
 
-            # check column
-            col_ind = square % 3
-            column = [self.board[col_ind+i*3]for i in range(3)]
-            if all ([spot == letter for spot in column]):
+        # check column
+        col_ind = square % 3
+        column = [self.board[col_ind+i*3]for i in range(3)]
+        if all ([spot == letter for spot in column]):
+            return True
+
+        # check diagonals
+        # but only if the square is a even number(0, 2, 4, 6, 8)
+        # these are the only moves possible to win a diagonal
+        if square % 2 == 0: 
+            diagonal1 = [self.board[i] for i in [0, 4, 8]] # top left to bottom right corners
+            if all([spot == letter for spot in diagonal1]):
+                return True
+            diagonal2 = [self.board[i] for i in [2, 4, 6]]# top right to bottom left corners
+            if all([spot == letter for spot in diagonal2]):
                 return True
 
-                # check diagonals
-                # but only if the square is a even number(0, 2, 4, 6, 8)
-                # these are the only moves possible to win a diagonal
-                if square % 2 == 0: 
-                    diagonal1 = [self.board[i] for i in [0, 4, 8]] # top left to bottom right corners
-                    if all([spot == letter for spot in diagonal1]):
-                        return True
-                    diagonal2 = [self.board[i] for i in [2, 4, 6]]# top right to bottom left corners
-                    if all([spot == letter for spot in diagonal2]):
-                        return True
-
-                    # if all of these fail
-                    return False
+        # if all of these fail
+        return False
 
 
 
