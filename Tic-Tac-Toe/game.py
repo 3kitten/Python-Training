@@ -26,7 +26,8 @@ class TicTacToe:
         return ' ' in self.board
         
     def num_empty_square(self):
-        return self.board.count(' ')
+        return len(self.available_moves)
+#        return self.board.count(' ')
 
     def make_move(self, square, letter ):
         #if the move is valid, then make the move(assign square to letter)
@@ -46,25 +47,25 @@ class TicTacToe:
         if all([spot == letter for spot in row]):
             return True
 
-            # check column
-            col_ind = square % 3
-            column = [self.board[col_ind+i*3]for i in range(3)]
-            if all ([spot == letter for spot in column]):
+        # check column
+        col_ind = square % 3
+        column = [self.board[col_ind+i*3]for i in range(3)]
+        if all ([spot == letter for spot in column]):
+            return True
+
+        # check diagonals
+        # but only if the square is a even number(0, 2, 4, 6, 8)
+        # these are the only moves possible to win a diagonal
+        if square % 2 == 0: 
+            diagonal1 = [self.board[i] for i in [0, 4, 8]] # top left to bottom right corners
+            if all([spot == letter for spot in diagonal1]):
+                return True
+            diagonal2 = [self.board[i] for i in [2, 4, 6]]# top right to bottom left corners
+            if all([spot == letter for spot in diagonal2]):
                 return True
 
-                # check diagonals
-                # but only if the square is a even number(0, 2, 4, 6, 8)
-                # these are the only moves possible to win a diagonal
-                if square % 2 == 0: 
-                    diagonal1 = [self.board[i] for i in [0, 4, 8]] # top left to bottom right corners
-                    if all([spot == letter for spot in diagonal1]):
-                        return True
-                    diagonal2 = [self.board[i] for i in [2, 4, 6]]# top right to bottom left corners
-                    if all([spot == letter for spot in diagonal2]):
-                        return True
-
-                    # if all of these fail
-                    return False
+            # if all of these fail
+            return False
 
 
 
@@ -83,13 +84,13 @@ def play(game, x_player, o_player, print_game= True):
         if letter == 'O':
             square = o_player.get_move(game)
         else:
-           square = x_player.get_move(game)
+            square = x_player.get_move(game)
         #now we define a function to make a move.
         if game.make_move(square, letter):
             if print_game:
-                print(letter + f'makes a move to square {square}')
+                print(letter + f' makes a move to square {square}')
                 game.print_board()
-                print('') #this is just anempty line
+                print('') #this is just an empty line
 
             if game.current_winner:
                 if print_game:
@@ -97,11 +98,11 @@ def play(game, x_player, o_player, print_game= True):
                 return letter
 
 
-            # after making our move we have to alternate the letters
-            letter ='O' if letter == 'X' else 'X'
+        # after making our move we have to alternate the letters
+        letter ='O' if letter == 'X' else 'X'
 
-            # tiny break to make this easier 
-            time.sleep(0.8)
+        # tiny break to make this easier 
+        time.sleep(0.8)
 
     if print_game:
         print('it\'s a tie')
