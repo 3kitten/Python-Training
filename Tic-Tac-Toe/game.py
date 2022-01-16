@@ -90,12 +90,12 @@ def play(game, x_player, o_player, print_game= True):
             if print_game:
                 print(letter + f' makes a move to square {square}')
                 game.print_board()
-                print('') #this is just anempty line
+                print('') #this is just an empty line
 
             if game.current_winner:
                 if print_game:
                     print(letter + 'wins!')
-                    return letter
+                return letter
 
 
         # after making our move we have to alternate the letters
